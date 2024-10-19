@@ -1,0 +1,165 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#wrapper{
+    height:100vh;
+    overflow-x: hidden;
+    perspective: 10px;
+}
+
+.container{
+    position:relative;
+    height: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+    z-index: -1;
+}
+
+.background{
+    transform: translateZ(-40px) scale(5);
+}
+
+.foreground{
+    transform: translateZ(-20px) scale(1.5);
+    margin-top: 1000px;
+}
+
+.background, .foreground{
+    position:absolute;
+    height:100%;
+    width:100%;
+    object-fit: cover;
+    z-index:-1;
+}
+
+h1 {
+    position: absolute;
+    top: 5rem;
+    font-size: 12rem;
+    letter-spacing: 4px;
+    color: #fbe408;
+    text-shadow: 4px 6px 8px rgba(187, 207, 31, 0.736);
+    transition: transform 0.3s ease, letter-spacing 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+}
+
+h1:hover {
+    transform: scale(1.1);
+    letter-spacing: 5px;
+    color: #ded606;
+    text-shadow: 14px 16px 18px rgba(231, 216, 11, 0.908);
+}
+
+
+section{
+    background-color: rgb(76, 37, 17);
+    color:white;
+    padding:5rem 0;
+}
+
+.secHeading{
+    font-size:5rem;
+    padding:0 10rem;
+}
+
+.text{
+    font-size:1.5rem;
+    padding: 0 10rem;
+    margin: 5rem 0;
+}
+
+.bg{
+    position:relative;
+    width:100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    height:500px;
+}
+
+.desc{
+    position: absolute;
+    background-color: rgba(91, 45, 12, 0.684);   
+    padding: 0.5rem 2.5rem;
+    top:50%;
+    left:40%;
+
+    /* margin-left: 100px; */
+    transform: translateX(-50%) translateX(-50%);
+    color:rgb(243, 236, 236);
+    font-size:3.5rem;
+    font-weight:600;
+}
+
+.bg1{
+    background-image: url(https://elledecor.in/wp-content/uploads/2023/12/1-1.jpg);
+}
+
+.bg2{
+    background-image: url(https://schoolarchitects.in/wp-content/uploads/2023/08/413A9129.jpg);
+}
+
+.bg3{
+    background-image: url(https://www.openminds-hyderabad.com/img/c3.jpeg);
+}
+
+
+/* Icon container for the three logos */
+.icon-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.icon-container i {
+    font-size: 3rem;  /* Adjust icon size */
+    color: #f5f0ee;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.icon-container i:hover {
+    color: #333;
+    transform: scale(1.2);  /* Add hover effect */
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.box {
+    background-color: #ffffff;
+    border: 12px solid #ffffff;
+    border-radius: 20%;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: 200px;  /* Increase height here */
+}
+
+.box h2 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.box p {
+    color: #555;
+    font-size: 1rem;
+}
+
+.box:hover {
+    transform: translateY(-10px);
+    box-shadow: 4px 8px 15px rgba(0, 0, 0, 0.2);
+    /* background-color: #e0e0e0; */
+}
+

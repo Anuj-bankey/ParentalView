@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enhanced Bus Form with Status Icons</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      width: 1000px;
+      margin: 0 auto;
+      background-color: #603d0c;
+    }
+
+    .search-section {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .search-section input {
+      width: 60%;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #e6581b;
+      margin-left: 20px;
+    }
+
+    .search-section button {
+      width: 25%;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      margin-right: 20px;
+      background-color: #f0a55a;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .search-section button:hover {
+      background-color: #995104;
+    }
+
+    /* Modal Styling */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 80%;
+      height: 80%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: #ee9c59;
+      padding: 20px;
+      border-radius: 10px;
+      width: 500px;
+      box-shadow: 5 14px 10px rgba(234, 177, 131, 0.1);
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .modal-content h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .modal-content input, .modal-content select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    .modal-content button {
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 15px;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    .modal-content button:hover {
+      background-color: #218838;
+    }
+
+    .close {
+      color: red;
+      float: right;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    /* Bus Info Styling */
+    .bus-info {
+      width: 90%;
+      margin-left: 20px;
+      padding: 20px;
+      background-color: #f6935a;
+      border-radius: 10px;
+      border: #f05c0c;
+      border-style: double;
+      border-width: 10px;
+      box-shadow: 0px 0px 10px rgba(237, 171, 136, 0.868);
+      margin-top: 20px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .status {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .status .status-item {
+      display: flex;
+      align-items: center;
+    }
+
+    .status .status-item img {
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+    }
+
+    .status .status-item span {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .status .closed {
+      color: green;
+    }
+
+    .status .open {
+      color: red;
+    }
+
+    .status .fastened {
+      color: green;
+    }
+
+    .status .unfastened {
+      color: red;
+    }
+
+    .status .ok {
+      color: green;
+    }
+
+    .status .high {
+      color: red;
+    }
+
+    .bus-info-link {
+      text-decoration: none;
+      color: inherit;
+    }
+    .head{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100px;
+        width: 1000px;
+        background-color:  #995104;
+        color: rgb(244, 239, 239);
+        margin-left: 240px;
+        margin-bottom: 10px; 
+    }
+    .dot{
+        color: rgb(55, 255, 0);
+    }
+  </style>
+</head>
+<body>
+    <div class="head"><H2>BUS INFORMATION</H2></div>
+  <div class="container">
+    <!-- Search section -->
+    <div class="search-section">
+      <input type="text" id="busSearch" placeholder="Search bus by Bus No.">
+      <button onclick="showModal()">+ ADD DRIVER / CONDUCTOR</button>
+    </div>
+
+    <!-- Bus Information will be displayed here -->
+    <div id="busDetails"></div>
+
+    <!-- Modal for adding new bus details -->
+    <div class="modal" id="addDriverModal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Add Driver / Conductor</h2>
+        
+        <input type="text" id="busNo" placeholder="Bus no." required>
+        <input type="text" id="officialBusNo" placeholder="Official bus no." required>
+        <input type="text" id="driverName" placeholder="Driver name" required>
+        <input type="text" id="driverContact" placeholder="Driver contact" required>
+        <input type="text" id="busRoute" placeholder="Bus route" required>
+
+        <!-- Door Status -->
+        <label for="doorStatus">Door Status: </label>
+        <select id="doorStatus">
+          <option value="closed">Door Closed</option>
+          <option value="open">Door Open</option>
+        </select>
+
+        <!-- Seat Belt Status -->
+        <label for="seatBelt">Seat Belt: </label>
+        <select id="seatBelt">
+          <option value="fastened">Fastened</option>
+          <option value="unfastened">Unfastened</option>
+        </select>
+
+        <!-- Liquor Check -->
+        <label for="liquorCount">Liquor Count: </label>
+        <input type="number" id="liquorCount" placeholder="Liquor bottles" required>
+
+        <button onclick="addBusInfo()">Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Function to show the modal
+    function showModal() {
+      document.getElementById('addDriverModal').style.display = 'flex';
+    }
+
+    // Function to close the modal
+    function closeModal() {
+      document.getElementById('addDriverModal').style.display = 'none';
+    }
+
+    // Function to add bus info
+    function addBusInfo() {
+      const busNo = document.getElementById('busNo').value;
+      const officialBusNo = document.getElementById('officialBusNo').value;
+      const driverName = document.getElementById('driverName').value;
+      const driverContact = document.getElementById('driverContact').value;
+      const busRoute = document.getElementById('busRoute').value;
+
+      const doorStatus = document.getElementById('doorStatus').value;
+      const seatBelt = document.getElementById('seatBelt').value;
+      const liquorCount = document.getElementById('liquorCount').value;
+
+      // Create bus object
+      const busData = {
+        busNo,
+        officialBusNo,
+        driverName,
+        driverContact,
+        busRoute,
+        doorStatus,
+        seatBelt,
+        liquorCount
+      };
+
+      // Save busData in localStorage
+      let busList = JSON.parse(localStorage.getItem('busList')) || [];
+      busList.push(busData);
+      localStorage.setItem('busList', JSON.stringify(busList));
+
+      displayBusCards(); // Display the updated list
+
+      closeModal(); // Close modal after submission
+    }
+
+    // Function to display bus cards
+    function displayBusCards() {
+      const busDetailsDiv = document.getElementById('busDetails');
+      busDetailsDiv.innerHTML = ''; // Clear previous entries
+
+      const busList = JSON.parse(localStorage.getItem('busList')) || [];
+
+      busList.forEach(bus => {
+        const busCard = `
+          <a href="cameraManage.html?busNo=${bus.busNo}" class="bus-info-link">
+            <div class="bus-info">
+              <h2>Bus Information</h2>
+              <p>Bus no.: ${bus.busNo}</p>
+              <p>Official bus no.: ${bus.officialBusNo}</p>
+              <p>Driver name: ${bus.driverName}</p>
+              <p>Driver contact: ${bus.driverContact}</p>
+              <p>Bus route: ${bus.busRoute}</p>
+              <h2 style="color:green">.</h2>
+
+              <!-- Status section -->
+              <div class="status">
+                <div class="status-item ${bus.doorStatus === 'closed' ? 'closed' : 'open'}">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRy5BLfn5VIVm_XdoJQ7bwjrWyXBJfmeR8YWJNh-pGtsFZY53BE8KqWactJSiQ4YcapolI&usqp=CAU" alt="Door status">
+                  <span>${bus.doorStatus === 'closed' ? 'Door Closed' : 'Door Open'}</span>
+                </div>
+                <div class="status-item ${bus.seatBelt === 'fastened' ? 'fastened' : 'unfastened'}">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaC4CpxaF-DLuhqlELxYJtV1L4dm0SWHdrXmzIYCnM1BLH-43rbVVSb_RI-kmZXECAVwg&usqp=CAU" alt="Seatbelt status">
+                  <span>${bus.seatBelt === 'fastened' ? 'Fastened' : 'Unfastened'}</span>
+                </div>
+                <div class="status-item ${bus.liquorCount <= 2 ? 'ok' : 'high'}">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5NSs3qGXeYyExLV9b8EXR9hiFomZo5az4uid53L8MqEOPnX857Ydp2rqYBnUFkn-MoNI&usqp=CAU" alt="Liquor status">
+                  <span>${bus.liquorCount <= 2 ? 'Okay' : 'High Liquor Count'}</span>
+                </div>
+              </div>
+            </div>
+          </a>
+        `;
+
+        busDetailsDiv.innerHTML += busCard; // Append each bus card
+      });
+    }
+
+    // On page load, display all stored bus cards
+    document.addEventListener('DOMContentLoaded', displayBusCards);
+  </script>
+</body>
+</html>

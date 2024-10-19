@@ -1,0 +1,164 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Tracking Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .camera-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 10px;
+            width: 70%;
+        }
+        .camera {
+            background-color: #d66937;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #888;
+            height: 270px; /* Fixed height for uniformity */
+        }
+        .camera img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover; /* Ensures the image covers the space without stretching */
+        }
+        .bus-info {
+            background-color: #fff;
+            padding: 20px;
+            border: 2px solid #888;
+            width: 28%;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #3e0505;
+            border-bottom: 2px solid #870a0a;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .contact-info {
+            margin-top: 20px;
+        }
+        .map {
+            background-color: #ddd;
+            height: 300px;
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+        .img1{
+            height: 300px;
+        }
+        h1{
+            color: wheat;
+        }
+        .A1{
+            height: 270px;
+        }
+        .btn {
+      padding: 12px 24px;
+      background-color: #eaaa2b;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+      transition: all 0.4s ease;
+    }
+
+    .btn:hover {
+      background-color: #eaeca5;
+      color: #302d2d;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Animation Effect */
+    .btn::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 300%;
+      height: 300%;
+      background-color: rgba(255, 255, 255, 0.3);
+      transition: all 0.5s ease;
+      transform: translate(-50%, -50%) rotate(45deg);
+      z-index: -1;
+    }
+
+    .btn:hover::before {
+      width: 0;
+      height: 0;
+    }
+
+    /* Optional Glow Effect */
+    .btn:hover {
+      box-shadow: 0 0 15px #e2ddb3, 0 0 30px #d7ed5d;
+    }
+       
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Bus No: 81</h1>
+        <div>
+            <button class="btn">Announcement</button>
+            <button class="btn">Manage Bus</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="camera-grid">
+            <div class="camera"><img class="A1" src="https://thumbs.dreamstime.com/b/inside-school-bus-line-seats-back-to-concept-educational-time-128112039.jpg" alt="Camera 1"></div>
+            <div class="camera"><img  class="A1" src="https://thumbs.dreamstime.com/b/smiling-school-bus-driver-sitting-bus-71523820.jpg" alt="Camera 2"></div>
+            <div class="camera"><img  class="A1" src="https://images.squarespace-cdn.com/content/v1/60365e12581b0a59fc910484/1614199725528-YWXJNTYHRJ0VWDIO5S65/Copy+of+IMG_1468.jpg" alt="Camera 3"></div>
+            <div class="camera"><img class="A1" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/8bed9478-a9fb-41fb-b614-00ca5961724a/d8rbsn0-df7880a1-2d60-4fce-a359-099cfb0e0b86.jpg/v1/fill/w_1600,h_1200,q_75,strp/school_bus_interior_by_steinwayhusky_d8rbsn0-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTIwMCIsInBhdGgiOiJcL2ZcLzhiZWQ5NDc4LWE5ZmItNDFmYi1iNjE0LTAwY2E1OTYxNzI0YVwvZDhyYnNuMC1kZjc4ODBhMS0yZDYwLTRmY2UtYTM1OS0wOTljZmIwZTBiODYuanBnIiwid2lkdGgiOiI8PTE2MDAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.M9l28g796N2eWtrlQlqNuhVe2P361xh_tsGcAPTf01o" alt="Camera 4"></div>
+            <div class="camera"><img class="A1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd1A1PQXdQ0Z8m-lKrpi-N4Bezi2bv9DFdJ4qjC0M4uizhQxHptxhB5t2FGN9JA8F1hYU&usqp=CAU" alt="Camera 5"></div>
+            <div class="camera"><img class="A1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZtkO3Ke3tDMXDda8S0etoBxaz7H6jdEdnLQ9-0J-pt4ojPNVOl-z-u6J3YdOiUv6acnQ&usqp=CAU" alt="Camera 6"></div>
+        </div>
+
+        <div class="bus-info">
+            <p><strong>Official Bus No:</strong> MP.09.CZ.8822</p>
+            <p><strong>Driver Name:</strong> Rajesh Kumar</p>
+            <p><strong>Bus Route:</strong> Khandwa Road - School</p>
+            <div class="contact-info">
+                <p><strong>Contact Driver:</strong> +91 65656-65656</p>
+                <p><strong>Contact Conductor:</strong> +91 65656-65656</p>
+            </div>
+            <div class="map">
+                <img src="https://preview.redd.it/5kz22cqxmtq81.png?auto=webp&s=142d57f96f806211814e96ffc19e02a481d38287" alt="" class="img1">
+            </div>
+        </div>
+    </div>
+
+</body>
+</html> 
+
+
+
+
